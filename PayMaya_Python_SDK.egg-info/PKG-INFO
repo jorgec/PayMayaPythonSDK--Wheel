@@ -26,7 +26,8 @@ Description: # Unofficial PayMaya-Python-SDK
         - pytest
         
         ## Installation
-        - Clone this project
+        `python -m pip install git+https://github.com/jorgec/PayMayaPythonSDK--Wheel`
+        
         
         ## Prerequisites
         

@@ -19,6 +19,7 @@ models/__init__.py
 models/amount_models.py
 models/buyer_models.py
 models/card_models.py
+models/checkout_customization_models.py
 models/checkout_data_models.py
 models/checkout_item_models.py
 models/payment_models.py
@@ -27,3 +28,4 @@ tests/cards.py
 tests/merchants.py
 tests/test_checkouts.py
 tests/test_payments.py
+tests/test_webhooks.py
