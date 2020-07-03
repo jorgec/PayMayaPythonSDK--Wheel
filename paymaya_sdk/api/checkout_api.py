@@ -4,7 +4,7 @@ from typing import Dict
 import requests
 
 from paymaya_sdk.core.checkout_api_manager import CheckoutAPIManager
-from paymaya_sdk.core.constants import CHECKOUTS_URL, WEBHOOKS_URL, CUSTOMIZATIONS_URL
+from paymaya_sdk.core.constants import CHECKOUTS_URL, WEBHOOKS_URL, CUSTOMIZATIONS_URL, REDIRECT_URLS
 from paymaya_sdk.core.http_config import HTTP_PUT, HTTP_DELETE
 from paymaya_sdk.models.checkout_customization_models import CheckoutCustomizationModel
 from paymaya_sdk.models.checkout_data_models import CheckoutDataModel
@@ -17,6 +17,7 @@ class CheckoutAPI:
     secret_api_key: str = None
     environment: str = "SANDBOX"
     encoded_key: str = None
+    redirect_urls: Dict = None
 
     manager: CheckoutAPIManager
 
@@ -49,6 +50,11 @@ class CheckoutAPI:
     def execute(self) -> requests.Response:
         if not self.checkout_data:
             raise ValueError("No Checkout Data")
+
+        if not self.redirect_urls:
+            self.redirect_urls = REDIRECT_URLS
+
+        self.checkout_data['redirectUrl'] = self.redirect_urls
 
         url = f"{self.manager.base_url}{CHECKOUTS_URL}"
         return self.manager.execute(url=url, payload=self.checkout_data.serialize())
