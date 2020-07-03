@@ -17,8 +17,6 @@ class CheckoutAPI:
     secret_api_key: str = None
     environment: str = "SANDBOX"
     encoded_key: str = None
-    redirect_urls: Dict = None
-    request_reference_number: str = None
 
     manager: CheckoutAPIManager
 
@@ -39,36 +37,18 @@ class CheckoutAPI:
             manager_data["encoded_key"] = self.encoded_key
         self.manager = CheckoutAPIManager(**manager_data)
 
-    def initiate(
-            self, checkout_data: CheckoutDataModel,
-            request_reference_number: str = None,
-            redirect_urls: Dict = dict) -> None:
+    def initiate(self, checkout_data: CheckoutDataModel) -> None:
         """
         Placeholder method in case we need to do some more pre-processing later
-        :param redirect_urls:
-        :param request_reference_number:
         :param checkout_data:
         :return:
         """
-
-        if request_reference_number:
-            self.request_reference_number = request_reference_number
-
-        if redirect_urls:
-            self.redirect_urls = redirect_urls
-        else:
-            self.redirect_urls = REDIRECT_URLS
 
         self.checkout_data = checkout_data
 
     def execute(self) -> requests.Response:
         if not self.checkout_data:
             raise ValueError("No Checkout Data")
-
-        self.checkout_data.redirect_urls = self.redirect_urls
-
-        if self.request_reference_number:
-            self.checkout_data.request_reference_number = self.request_reference_number
 
         url = f"{self.manager.base_url}{CHECKOUTS_URL}"
         return self.manager.execute(url=url, payload=self.checkout_data.serialize())

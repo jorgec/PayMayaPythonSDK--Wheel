@@ -62,4 +62,4 @@ class CheckoutTests(unittest.TestCase):
             "redirectUrl": <URL>
         }
         """
-        assert result
+        assert result, result
