@@ -39,12 +39,23 @@ class CheckoutAPI:
             manager_data["encoded_key"] = self.encoded_key
         self.manager = CheckoutAPIManager(**manager_data)
 
-    def initiate(self, checkout_data: CheckoutDataModel) -> None:
+    def initiate(
+            self, checkout_data: CheckoutDataModel,
+            request_reference_number: str = None,
+            redirect_urls: Dict = dict) -> None:
         """
         Placeholder method in case we need to do some more pre-processing later
+        :param redirect_urls:
+        :param request_reference_number:
         :param checkout_data:
         :return:
         """
+
+        if request_reference_number:
+            self.request_reference_number = request_reference_number
+
+        if redirect_urls:
+            self.redirect_urls = redirect_urls
 
         self.checkout_data = checkout_data
 
