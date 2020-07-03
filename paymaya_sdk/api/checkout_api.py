@@ -56,6 +56,8 @@ class CheckoutAPI:
 
         if redirect_urls:
             self.redirect_urls = redirect_urls
+        else:
+            self.redirect_urls = REDIRECT_URLS
 
         self.checkout_data = checkout_data
 
@@ -63,13 +65,10 @@ class CheckoutAPI:
         if not self.checkout_data:
             raise ValueError("No Checkout Data")
 
-        if not self.redirect_urls:
-            self.redirect_urls = REDIRECT_URLS
-
-        self.checkout_data['redirectUrl'] = self.redirect_urls
+        self.checkout_data.redirect_urls = self.redirect_urls
 
         if self.request_reference_number:
-            self.checkout_data['requestReferenceNumber'] = self.request_reference_number
+            self.checkout_data.request_reference_number = self.request_reference_number
 
         url = f"{self.manager.base_url}{CHECKOUTS_URL}"
         return self.manager.execute(url=url, payload=self.checkout_data.serialize())
