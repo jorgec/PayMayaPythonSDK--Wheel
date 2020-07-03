@@ -4,7 +4,7 @@ import unittest
 
 from faker import Faker
 
-from paymaya_python_sdk import PayMayaSDK
+from paymaya_sdk.paymaya_python_sdk import PayMayaSDK
 from paymaya_sdk.models.amount_models import AmountModel, TotalAmountModel
 from paymaya_sdk.models.buyer_models import BuyerModel
 from paymaya_sdk.models.checkout_data_models import CheckoutDataModel
