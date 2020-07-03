@@ -1,6 +1,6 @@
 import json
 
-from models.amount_models import TotalAmountModel
+from .amount_models import TotalAmountModel
 
 
 class CheckoutItemModel:

@@ -1,6 +1,6 @@
 import requests
 
-from core.http_config import HTTPConfig, HTTP_POST, HTTP_GET, HTTP_PUT, HTTP_DELETE
+from paymaya_sdk.core.http_config import HTTPConfig, HTTP_POST, HTTP_GET, HTTP_PUT, HTTP_DELETE
 
 
 class HTTPConnection:

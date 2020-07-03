@@ -50,9 +50,9 @@ The data models have 2 convenience functions: `as_dict()` and `serialize()`:
 ```python
 from paymaya_sdk import PayMayaSDK
 from api.payment_api import PaymentAPI
-from models.amount_model import AmountModel
-from models.buyer_model import BuyerModel
-from models.card_model import CardModel
+from paymaya_sdk.models import AmountModel
+from paymaya_sdk.models import BuyerModel
+from paymaya_sdk.models import CardModel
 
 # for amounts
 from decimal import Decimal
@@ -111,10 +111,10 @@ payment.get_payment(payment_id=<uuid>)
 ```
 ### Checkouts
 ```python
-from models.amount_models import AmountModel, TotalAmountModel
-from models.buyer_models import BuyerModel
-from models.checkout_data_models import CheckoutDataModel
-from models.checkout_item_models import CheckoutItemModel
+from paymaya_sdk.models import AmountModel, TotalAmountModel
+from paymaya_sdk.models import BuyerModel
+from paymaya_sdk.models import CheckoutDataModel
+from paymaya_sdk.models import CheckoutItemModel
 from paymaya_sdk import PayMayaSDK
 
 paymaya = PayMayaSDK()

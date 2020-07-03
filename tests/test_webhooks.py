@@ -1,5 +1,5 @@
 import unittest
-from paymaya_sdk import PayMayaSDK
+from paymaya_python_sdk import PayMayaSDK
 from .merchants import m1
 from faker import Faker
 

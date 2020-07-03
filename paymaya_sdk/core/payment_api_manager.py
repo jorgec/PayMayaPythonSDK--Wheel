@@ -1,5 +1,5 @@
-from core.api_manager import APIManager
-from core.constants import PRODUCTION, PAYMENTS_PRODUCTION_URL, PAYMENTS_SANDBOX_URL
+from paymaya_sdk.core.api_manager import APIManager
+from paymaya_sdk.core.constants import PRODUCTION, PAYMENTS_PRODUCTION_URL, PAYMENTS_SANDBOX_URL
 
 
 class PaymentAPIManager(APIManager):

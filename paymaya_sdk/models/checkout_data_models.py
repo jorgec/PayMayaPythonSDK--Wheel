@@ -1,10 +1,10 @@
 import json
 from typing import Union, List, Dict
 
-from core.constants import REDIRECT_URLS
-from models.amount_models import TotalAmountModel
-from models.buyer_models import BuyerModel
-from models.checkout_item_models import CheckoutItemModel
+from paymaya_sdk.core.constants import REDIRECT_URLS
+from paymaya_sdk.models.amount_models import TotalAmountModel
+from .buyer_models import BuyerModel
+from .checkout_item_models import CheckoutItemModel
 
 
 class CheckoutDataModel:

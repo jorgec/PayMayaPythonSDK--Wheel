@@ -3,18 +3,18 @@ from typing import Dict
 
 import requests
 
-from core.constants import (
+from paymaya_sdk.core.constants import (
     REDIRECT_URLS,
     PAYMENTS_TOKEN_URL,
     PAYMENTS_URL,
     PAYMENT_VAULT_CUSTOMERS,
 )
-from core.http_config import HTTP_PUT, HTTP_DELETE
-from core.payment_api_manager import PaymentAPIManager
-from models.amount_models import AmountModel
-from models.buyer_models import BuyerModel
-from models.card_models import CardModel
-from models.payment_models import PaymentModel
+from paymaya_sdk.core.http_config import HTTP_PUT, HTTP_DELETE
+from paymaya_sdk.core.payment_api_manager import PaymentAPIManager
+from paymaya_sdk.models.amount_models import AmountModel
+from paymaya_sdk.models.buyer_models import BuyerModel
+from paymaya_sdk.models.card_models import CardModel
+from paymaya_sdk.models.payment_models import PaymentModel
 
 
 class PaymentAPI:

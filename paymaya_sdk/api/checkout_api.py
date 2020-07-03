@@ -3,11 +3,11 @@ from typing import Dict
 
 import requests
 
-from core.checkout_api_manager import CheckoutAPIManager
-from core.constants import CHECKOUTS_URL, WEBHOOKS_URL, CUSTOMIZATIONS_URL
-from core.http_config import HTTP_PUT, HTTP_DELETE
-from models.checkout_customization_models import CheckoutCustomizationModel
-from models.checkout_data_models import CheckoutDataModel
+from paymaya_sdk.core.checkout_api_manager import CheckoutAPIManager
+from paymaya_sdk.core.constants import CHECKOUTS_URL, WEBHOOKS_URL, CUSTOMIZATIONS_URL
+from paymaya_sdk.core.http_config import HTTP_PUT, HTTP_DELETE
+from paymaya_sdk.models.checkout_customization_models import CheckoutCustomizationModel
+from paymaya_sdk.models.checkout_data_models import CheckoutDataModel
 
 
 class CheckoutAPI:

@@ -3,8 +3,8 @@ from typing import Dict
 
 import requests
 
-from core.http_config import HTTP_GET, HTTPConfig, HTTP_POST
-from core.http_connection import HTTPConnection
+from paymaya_sdk.core.http_config import HTTP_GET, HTTPConfig, HTTP_POST
+from paymaya_sdk.core.http_connection import HTTPConnection
 
 
 class APIManager:

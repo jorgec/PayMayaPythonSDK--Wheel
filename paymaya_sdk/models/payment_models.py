@@ -1,7 +1,7 @@
 import json
 from typing import Dict
 
-from core.constants import REDIRECT_URLS
+from paymaya_sdk.core.constants import REDIRECT_URLS
 from .amount_models import AmountModel
 from .buyer_models import BuyerModel
 

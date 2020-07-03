@@ -4,11 +4,12 @@ import unittest
 
 from faker import Faker
 
-from models.amount_models import AmountModel, TotalAmountModel
-from models.buyer_models import BuyerModel
-from models.checkout_data_models import CheckoutDataModel
-from models.checkout_item_models import CheckoutItemModel
-from paymaya_sdk import PayMayaSDK
+from paymaya_python_sdk import PayMayaSDK
+from paymaya_sdk.models.amount_models import AmountModel, TotalAmountModel
+from paymaya_sdk.models.buyer_models import BuyerModel
+from paymaya_sdk.models.checkout_data_models import CheckoutDataModel
+from paymaya_sdk.models.checkout_item_models import CheckoutItemModel
+
 from .merchants import m1
 
 fake = Faker()

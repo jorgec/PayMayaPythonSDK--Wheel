@@ -1,8 +1,8 @@
 from typing import List
 
-from core.api_manager import APIManager
-from core.constants import PRODUCTION, CHECKOUT_PRODUCTION_URL, CHECKOUT_SANDBOX_URL
-from models.checkout_data_models import CheckoutDataModel
+from paymaya_sdk.core.api_manager import APIManager
+from paymaya_sdk.core.constants import PRODUCTION, CHECKOUT_PRODUCTION_URL, CHECKOUT_SANDBOX_URL
+from paymaya_sdk.models.checkout_data_models import CheckoutDataModel
 
 
 class CheckoutAPIManager(APIManager):

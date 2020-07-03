@@ -55,7 +55,7 @@ class TotalAmountModel:
     details: TotalAmountDetailModel
 
     def __init__(
-        self, amount: AmountModel = None, details: TotalAmountDetailModel = None
+            self, amount: AmountModel = None, details: TotalAmountDetailModel = None
     ):
         if not amount:
             amount = AmountModel()
