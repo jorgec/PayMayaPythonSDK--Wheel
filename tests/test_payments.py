@@ -6,7 +6,7 @@ from faker import Faker
 
 from paymaya_sdk.models.amount_models import AmountModel
 from paymaya_sdk.models.buyer_models import BuyerModel
-from paymaya_sdk.paymaya_python_sdk import PayMayaSDK
+from paymaya_sdk.sdk import PayMayaSDK
 from .cards import ms_2
 from .merchants import m1
 

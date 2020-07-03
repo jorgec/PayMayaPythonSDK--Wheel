@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 setuptools.setup(
     name='PayMayaPythonSDK',
     version='0.1',
-    scripts=['paymaya_sdk/paymaya_python_sdk.py'],
+    scripts=[],
     author="Jorge Cosgayon",
     author_email="jorge.cosgayon@gmail.com",
     description="A Python port of the PHP PayMaya SDK",
