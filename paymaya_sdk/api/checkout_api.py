@@ -18,6 +18,7 @@ class CheckoutAPI:
     environment: str = "SANDBOX"
     encoded_key: str = None
     redirect_urls: Dict = None
+    request_reference_number: str = None
 
     manager: CheckoutAPIManager
 
@@ -55,6 +56,9 @@ class CheckoutAPI:
             self.redirect_urls = REDIRECT_URLS
 
         self.checkout_data['redirectUrl'] = self.redirect_urls
+
+        if self.request_reference_number:
+            self.checkout_data['requestReferenceNumber'] = self.request_reference_number
 
         url = f"{self.manager.base_url}{CHECKOUTS_URL}"
         return self.manager.execute(url=url, payload=self.checkout_data.serialize())
