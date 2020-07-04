@@ -5,10 +5,12 @@ from decimal import Decimal
 class AmountModel:
     total: Decimal
     currency_code: str
+    as_float: bool
 
-    def __init__(self, *, total: Decimal = 0.0, currency_code: str = "PHP"):
+    def __init__(self, *, total: Decimal = 0.0, currency_code: str = "PHP", as_float: bool = True):
         self.total = round(total, 2)
         self.currency_code = currency_code
+        self.as_float = as_float
 
     def total_as_str(self):
         return str(self.total)
@@ -18,6 +20,10 @@ class AmountModel:
 
     def as_dict(self):
         data = {"amount": self.total_as_str(), "currency": self.currency_code}
+        if self.as_float:
+            data["amount"] = self.total_as_float()
+        else:
+            data["amount"] = self.total_as_str()
 
         return data
 
