@@ -5,7 +5,7 @@ import requests
 
 from paymaya_sdk.core.checkout_api_manager import CheckoutAPIManager
 from paymaya_sdk.core.constants import CHECKOUTS_URL, WEBHOOKS_URL, CUSTOMIZATIONS_URL, REDIRECT_URLS
-from paymaya_sdk.core.http_config import HTTP_PUT, HTTP_DELETE
+from paymaya_sdk.core.http_config import HTTP_PUT, HTTP_DELETE, HTTP_POST
 from paymaya_sdk.models.checkout_customization_models import CheckoutCustomizationModel
 from paymaya_sdk.models.checkout_data_models import CheckoutDataModel
 
@@ -46,12 +46,12 @@ class CheckoutAPI:
 
         self.checkout_data = checkout_data
 
-    def execute(self) -> requests.Response:
+    def execute(self, key: str = "secret", method: str = HTTP_POST) -> requests.Response:
         if not self.checkout_data:
             raise ValueError("No Checkout Data")
 
         url = f"{self.manager.base_url}{CHECKOUTS_URL}"
-        return self.manager.execute(url=url, payload=self.checkout_data.serialize())
+        return self.manager.execute(url=url, payload=self.checkout_data.serialize(), key=key, method=method)
 
     # The Webhooks API seems to be borked ¯\_(ツ)_/¯
     # TODO: Tests
