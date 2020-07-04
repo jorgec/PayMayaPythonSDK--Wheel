@@ -19,11 +19,11 @@ class AmountModel:
         return float(self.total)
 
     def as_dict(self):
-        data = {"amount": self.total_as_str(), "currency": self.currency_code}
+        data = {"currency": self.currency_code}
         if self.as_float:
-            data["amount"] = self.total_as_float()
+            data["value"] = self.total_as_float()
         else:
-            data["amount"] = self.total_as_str()
+            data["value"] = self.total_as_str()
 
         return data
 
