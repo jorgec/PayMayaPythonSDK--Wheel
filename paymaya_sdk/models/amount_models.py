@@ -13,6 +13,9 @@ class AmountModel:
     def total_as_str(self):
         return str(self.total)
 
+    def total_as_float(self):
+        return float(self.total)
+
     def as_dict(self):
         data = {"amount": self.total_as_str(), "currency": self.currency_code}
 
@@ -53,20 +56,26 @@ class TotalAmountDetailModel:
 class TotalAmountModel:
     amount: AmountModel
     details: TotalAmountDetailModel
+    as_float: bool
 
     def __init__(
-            self, amount: AmountModel = None, details: TotalAmountDetailModel = None
+            self, amount: AmountModel = None, details: TotalAmountDetailModel = None, as_float: bool = True
     ):
         if not amount:
             amount = AmountModel()
         self.amount = amount
         self.details = details
+        self.as_float = as_float
 
     def as_dict(self):
         data = {
             "currency": self.amount.currency_code,
-            "value": self.amount.total_as_str(),
         }
+        if self.as_float:
+            data["value"] = self.amount.total_as_float()
+        else:
+            data["value"] = self.amount.total_as_str()
+
         if self.details:
             data["details"] = self.details.as_dict()
         else:
