@@ -26,7 +26,7 @@ class CheckoutTests(unittest.TestCase):
 
         checkout = paymaya.checkout()
 
-        amt = decimal.Decimal(random.uniform(100, 500))
+        amt = 5  # decimal.Decimal(random.uniform(100, 500))
         amount = AmountModel(total=amt, currency_code="PHP")
         single_amount = TotalAmountModel(amount=amount)
 
@@ -62,4 +62,4 @@ class CheckoutTests(unittest.TestCase):
             "redirectUrl": <URL>
         }
         """
-        assert result, result
+        assert not result, result.json()
