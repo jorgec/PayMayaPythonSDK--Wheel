@@ -12,6 +12,22 @@ class AmountModel:
         self.currency_code = currency_code
         self.as_float = as_float
 
+    @property
+    def value(self):
+        return self.total
+
+    @value.setter
+    def value(self, v):
+        if not isinstance(v, Decimal):
+            try:
+                v = Decimal(v)
+            except TypeError:
+                v = Decimal(0)
+        try:
+            self.total = round(v, 2)
+        except TypeError:
+            self.total = Decimal(0)
+
     def total_as_str(self):
         return str(self.total)
 
