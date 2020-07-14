@@ -92,7 +92,7 @@ class PaymentAPI:
         if not self.card:
             raise ValueError("No card registered")
 
-        url = f"{self.manager.base_url}{PAYMENTS_TOKEN_URL}"
+        url = f"{self.manager.get_base_url()}{PAYMENTS_TOKEN_URL}"
         result = self.manager.execute(
             url=url, payload=self.card.serialize(), key="public"
         )
@@ -107,7 +107,7 @@ class PaymentAPI:
         if not self.amount:
             raise AttributeError("No Amount")
 
-        url = f"{self.manager.base_url}{PAYMENTS_URL}"
+        url = f"{self.manager.get_base_url()}{PAYMENTS_URL}"
         payment_data = {"token": self.token, "buyer": self.buyer, "amount": self.amount}
         if self.redirect_urls:
             payment_data["urls"] = self.redirect_urls
@@ -117,14 +117,14 @@ class PaymentAPI:
         return result
 
     def get_payment(self, payment_id: str) -> requests.Response:
-        url = f"{self.manager.base_url}{PAYMENTS_URL}/{payment_id}"
+        url = f"{self.manager.get_base_url()}{PAYMENTS_URL}/{payment_id}"
         return self.manager.query(url)
 
     def register_customer(self):
         if not self.buyer:
             raise AttributeError("No Customer/Buyer set")
 
-        url = f"{self.manager.base_url}{PAYMENT_VAULT_CUSTOMERS}"
+        url = f"{self.manager.get_base_url()}{PAYMENT_VAULT_CUSTOMERS}"
         result = self.manager.execute(url=url, payload=self.buyer.serialize())
 
         if result.status_code == 200:
@@ -132,18 +132,18 @@ class PaymentAPI:
         return result
 
     def get_customer(self, customer_id: str) -> requests.Response:
-        url = f"{self.manager.base_url}{PAYMENT_VAULT_CUSTOMERS}/{customer_id}"
+        url = f"{self.manager.get_base_url()}{PAYMENT_VAULT_CUSTOMERS}/{customer_id}"
         return self.manager.query(url=url)
 
     def update_customer(
         self, customer_id: str, fields: Dict = dict
     ) -> requests.Response:
-        url = f"{self.manager.base_url}{PAYMENT_VAULT_CUSTOMERS}/{customer_id}"
+        url = f"{self.manager.get_base_url()}{PAYMENT_VAULT_CUSTOMERS}/{customer_id}"
         payload = json.dumps(fields)
         return self.manager.execute(url=url, payload=payload, method=HTTP_PUT)
 
     def delete_customer(self, customer_id: str) -> requests.Response:
-        url = f"{self.manager.base_url}{PAYMENT_VAULT_CUSTOMERS}/{customer_id}"
+        url = f"{self.manager.get_base_url()}{PAYMENT_VAULT_CUSTOMERS}/{customer_id}"
         return self.manager.execute(url=url, method=HTTP_DELETE)
 
     def save_card_to_vault(
@@ -151,7 +151,7 @@ class PaymentAPI:
     ):
         self.pre_payment_checks()
 
-        url = f"{self.manager.base_url}{PAYMENT_VAULT_CUSTOMERS}/{self.buyer.customer_id}/cards"
+        url = f"{self.manager.get_base_url()}{PAYMENT_VAULT_CUSTOMERS}/{self.buyer.customer_id}/cards"
         payload = {
             "paymentTokenId": self.card.token,
             "isDefault": is_default,
@@ -164,21 +164,21 @@ class PaymentAPI:
         if not self.buyer:
             raise AttributeError("No Buyer/Customer set")
 
-        url = f"{self.manager.base_url}{PAYMENT_VAULT_CUSTOMERS}/{self.buyer.customer_id}/cards"
+        url = f"{self.manager.get_base_url()}{PAYMENT_VAULT_CUSTOMERS}/{self.buyer.customer_id}/cards"
         return self.manager.query(url=url)
 
     def get_card_in_vault(self, card_token: str):
         if not self.buyer:
             raise AttributeError("No Buyer/Customer set")
 
-        url = f"{self.manager.base_url}{PAYMENT_VAULT_CUSTOMERS}/{self.buyer.customer_id}/cards/{card_token}"
+        url = f"{self.manager.get_base_url()}{PAYMENT_VAULT_CUSTOMERS}/{self.buyer.customer_id}/cards/{card_token}"
         return self.manager.query(url=url)
 
     def update_card_in_vault(self, card_token: str, fields: Dict):
         if not self.buyer:
             raise AttributeError("No Buyer/Customer set")
 
-        url = f"{self.manager.base_url}{PAYMENT_VAULT_CUSTOMERS}/{self.buyer.customer_id}/cards/{card_token}"
+        url = f"{self.manager.get_base_url()}{PAYMENT_VAULT_CUSTOMERS}/{self.buyer.customer_id}/cards/{card_token}"
         payload = json.dumps(fields)
 
         return self.manager.execute(url=url, payload=payload, method=HTTP_PUT)
@@ -187,7 +187,7 @@ class PaymentAPI:
         if not self.buyer:
             raise AttributeError("No Buyer/Customer set")
 
-        url = f"{self.manager.base_url}{PAYMENT_VAULT_CUSTOMERS}/{self.buyer.customer_id}/cards/{card_token}"
+        url = f"{self.manager.get_base_url()}{PAYMENT_VAULT_CUSTOMERS}/{self.buyer.customer_id}/cards/{card_token}"
 
         return self.manager.execute(url=url, method=HTTP_DELETE)
 
@@ -197,7 +197,7 @@ class PaymentAPI:
         if not self.amount:
             raise AttributeError("No Amount")
 
-        url = f"{self.manager.base_url}{PAYMENT_VAULT_CUSTOMERS}/{self.buyer.customer_id}/cards/{self.card.token}"
+        url = f"{self.manager.get_base_url()}{PAYMENT_VAULT_CUSTOMERS}/{self.buyer.customer_id}/cards/{self.card.token}"
         payload = {"totalAmount": self.amount.as_dict()}
 
         result = self.manager.execute(url=url, payload=json.dumps(payload))

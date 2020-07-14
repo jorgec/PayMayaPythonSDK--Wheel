@@ -17,6 +17,7 @@ class CheckoutAPI:
     secret_api_key: str = None
     environment: str = "SANDBOX"
     encoded_key: str = None
+    last_url: str = None
 
     manager: CheckoutAPIManager
 
@@ -50,7 +51,9 @@ class CheckoutAPI:
         if not self.checkout_data:
             raise ValueError("No Checkout Data")
 
-        url = f"{self.manager.base_url}{CHECKOUTS_URL}"
+        url = f"{self.manager.get_base_url()}{CHECKOUTS_URL}"
+        self.last_url = url
+
         return self.manager.execute(url=url, payload=self.checkout_data.serialize(), key=key, method=method)
 
     # The Webhooks API seems to be borked ¯\_(ツ)_/¯
@@ -58,32 +61,32 @@ class CheckoutAPI:
 
     def register_webhook(self, name: str, callback_url: str) -> requests.Response:
         payload = json.dumps({"name": name, "callbackUrl": callback_url})
-        url = f"{self.manager.base_url}{WEBHOOKS_URL}"
+        url = f"{self.manager.get_base_url()}{WEBHOOKS_URL}"
 
         return self.manager.execute(url=url, payload=payload)
 
     def get_webhooks(self) -> requests.Response:
-        url = f"{self.manager.base_url}{WEBHOOKS_URL}"
+        url = f"{self.manager.get_base_url()}{WEBHOOKS_URL}"
         return self.manager.query(url=url)
 
     def update_webhook(self, webhook_id: str, fields: Dict) -> requests.Response:
-        url = f"{self.manager.base_url}{WEBHOOKS_URL}/{webhook_id}"
+        url = f"{self.manager.get_base_url()}{WEBHOOKS_URL}/{webhook_id}"
         payload = json.dumps(fields)
         return self.manager.execute(url=url, payload=payload, method=HTTP_PUT)
 
     def delete_webhook(self, webhook_id: str):
-        url = f"{self.manager.base_url}{WEBHOOKS_URL}/{webhook_id}"
+        url = f"{self.manager.get_base_url()}{WEBHOOKS_URL}/{webhook_id}"
         return self.manager.execute(url=url, method=HTTP_DELETE)
 
     def register_customization(self, customization: CheckoutCustomizationModel):
-        url = f"{self.manager.base_url}{CUSTOMIZATIONS_URL}"
+        url = f"{self.manager.get_base_url()}{CUSTOMIZATIONS_URL}"
         payload = customization.serialize()
         return self.manager.execute(url=url, payload=payload)
 
     def get_customizations(self):
-        url = f"{self.manager.base_url}{CUSTOMIZATIONS_URL}"
+        url = f"{self.manager.get_base_url()}{CUSTOMIZATIONS_URL}"
         return self.manager.query(url=url)
 
     def delete_customizations(self):
-        url = f"{self.manager.base_url}{CUSTOMIZATIONS_URL}"
+        url = f"{self.manager.get_base_url()}{CUSTOMIZATIONS_URL}"
         return self.manager.execute(url=url, method=HTTP_DELETE)
