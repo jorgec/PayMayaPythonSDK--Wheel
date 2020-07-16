@@ -56,11 +56,6 @@ class CheckoutAPI:
         url = f"{self.manager.get_base_url()}{CHECKOUTS_URL}"
         self.last_url = url
 
-        if not self.redirect_urls:
-            self.redirect_urls = REDIRECT_URLS
-
-        self.checkout_data['redirectUrl'] = self.redirect_urls
-
         if self.request_reference_number:
             self.checkout_data['requestReferenceNumber'] = self.request_reference_number
 

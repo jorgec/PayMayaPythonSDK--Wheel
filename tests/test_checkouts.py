@@ -50,10 +50,18 @@ class CheckoutTests(unittest.TestCase):
         checkout_data.buyer = buyer
         checkout_data.items = [item.as_dict()]
         checkout_data.request_reference_number = fake.uuid4()
+        checkout_data.redirect_urls = {
+            "success": "https://google.com",
+            "failure": "https://yahoo.com",
+            "cancel": "https://microsoft.com",
+        }
 
         checkout.initiate(checkout_data)
 
         result = checkout.execute()
+
+        assert checkout.checkout_data.as_dict().get('redirectUrl').get(
+            'success') == 'https://google.com', checkout_data.as_dict()
         """
         Checkout returns:
         - result.json()
