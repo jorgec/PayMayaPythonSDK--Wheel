@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 setuptools.setup(
     name='PayMayaPythonSDK',
-    version='0.2',
+    version='0.3',
     scripts=[],
     author="Jorge Cosgayon",
     author_email="jorge.cosgayon@gmail.com",
