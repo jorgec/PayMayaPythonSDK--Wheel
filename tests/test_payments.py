@@ -46,7 +46,7 @@ class PaymentTests(unittest.TestCase):
         payment.create_token()
         payment_result = payment.execute_payment()
 
-        assert payment_result.status_code == 200, print(payment_result.json())
+        assert payment_result.status_code == 200, print(payment_result.json(), amount.serialize())
 
         payment_id = payment_result.json().get("id", None)
         assert payment_id is not None, print(payment_result.json())

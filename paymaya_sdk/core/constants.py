@@ -12,6 +12,11 @@ PAYMENTS_PRODUCTION_URL = "https://pg.paymaya.com/payments"
 PAYMENTS_TOKEN_URL = "/v1/payment-tokens"
 PAYMENTS_URL = "/v1/payments"
 
+# Direct Payments
+DIRECT_SANDBOX_URL = "https://pg-sandbox.paymaya.com/payby/v2/paymaya"
+DIRECT_PRODUCTION_URL = "https://pg.paymaya.com/payby/v2/paymaya"
+DIRECT_SINGLE_PAYMENT = "/payments"
+
 # Payment Vault
 PAYMENT_VAULT_CUSTOMERS = "/v1/customers"
 

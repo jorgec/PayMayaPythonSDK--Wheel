@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 from paymaya_sdk.api import CheckoutAPI, PaymentAPI
+from paymaya_sdk.api.paymaya_direct_api import PaymayaDirectAPI
 
 
 class PayMayaSDK:
@@ -32,11 +33,11 @@ class PayMayaSDK:
     encoded_key: str = None
 
     def set_keys(
-        self,
-        public_api_key: str = None,
-        secret_api_key: str = None,
-        environment: str = "SANDBOX",
-        encoded_key: str = None,
+            self,
+            public_api_key: str = None,
+            secret_api_key: str = None,
+            environment: str = "SANDBOX",
+            encoded_key: str = None,
     ) -> None:
         self.public_api_key = public_api_key
         self.secret_api_key = secret_api_key
@@ -58,5 +59,13 @@ class PayMayaSDK:
             secret_api_key=self.secret_api_key,
             environment=self.environment,
             encoded_key=self.encoded_key,
+        )
+        return self.api
+
+    def direct_payment(self) -> PaymayaDirectAPI:
+        self.api = PaymayaDirectAPI(
+            public_api_key=self.public_api_key,
+            secret_api_key=self.secret_api_key,
+            environment=self.environment
         )
         return self.api

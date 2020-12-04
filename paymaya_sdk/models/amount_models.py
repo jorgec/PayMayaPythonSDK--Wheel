@@ -13,6 +13,10 @@ class AmountModel:
         self.as_float = as_float
 
     @property
+    def amount(self):
+        return self.value
+
+    @property
     def value(self):
         return self.total
 
@@ -38,8 +42,10 @@ class AmountModel:
         data = {"currency": self.currency_code}
         if self.as_float:
             data["value"] = self.total_as_float()
+            data["amount"] = self.total_as_float()
         else:
             data["value"] = self.total_as_str()
+            data["amount"] = self.total_as_str()
 
         return data
 
